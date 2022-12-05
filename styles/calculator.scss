@@ -1,0 +1,138 @@
+#calculator {
+  padding: 3rem;
+
+  & #calc-container {
+    @include dimensions(100%, 100%);
+    @include grid-container(minmax(50px, 2fr) repeat(5, 1fr),repeat(3, 1.5fr) 1fr);
+    grid-template-areas:
+      "display display display display"
+      "seven eight nine plus"
+      "four five six minus"
+      "one two three divide"
+      "dot zero del multiply"
+      "clear clear equals multiply";
+    align-content: center;
+    grid-gap: 1rem;
+
+    & #display {
+      @include box-shadow-inset;
+      @include border(solid, 0px, transparent, 1rem);
+      padding:1rem;
+
+      & .row{
+        width:100%;
+        margin-bottom:3px;
+        word-break:break-all;
+        text-align:right;
+        @include font($font-1,1rem,bold);
+      }
+
+      & .prev-row{
+        color:$font-color-2;
+        z-index:0;
+      }
+
+    }
+
+    & #display.overflow-display {
+      scroll-behavior: smooth;
+      overflow-y:scroll;
+      border-radius:1rem 0 0 1rem;
+    }
+    & .operand {
+      background-color: $button-color-2;
+    }
+
+    
+    & > *:nth-child(1) {
+      grid-area: display;
+    }
+    & > *:nth-child(2) {
+      grid-area: seven;
+    }
+    & > *:nth-child(3) {
+      grid-area: eight;
+    }
+    & > *:nth-child(4) {
+      grid-area: nine;
+    }
+    & > *:nth-child(5) {
+      grid-area: plus;
+    }
+    & > *:nth-child(6) {
+      grid-area: four;
+    }
+    & > *:nth-child(7) {
+      grid-area: five;
+    }
+    & > *:nth-child(8) {
+      grid-area: six;
+    }
+    & > *:nth-child(9) {
+      grid-area: minus;
+    }
+    & > *:nth-child(10) {
+      grid-area: one;
+    }
+    & > *:nth-child(11) {
+      grid-area: two;
+    }
+    & > *:nth-child(12) {
+      grid-area: three;
+    }
+    & > *:nth-child(13) {
+      grid-area: multiply;
+    }
+    & > *:nth-child(14) {
+      grid-area: dot;
+    }
+    & > *:nth-child(15) {
+      grid-area: zero;
+    }
+    & > *:nth-child(16) {
+      grid-area: del;
+    }
+    & > *:nth-child(17) {
+      grid-area: divide;
+    }
+    & > *:nth-child(18) {
+      grid-area: clear;
+      background-color: $red;
+    }
+    & > *:nth-child(19) {
+      grid-area: equals;
+    }
+  }
+}
+
+.button.hover{
+  box-shadow: none;
+  &:before {
+    @include box-shadow-inset;
+    z-index:1;
+  }
+}
+
+.keyboard-mode{
+  outline:solid 0.25rem $font-color-1;
+  animation: outline-scale 0.3s;
+  outline-offset:0.4rem;
+}
+
+@keyframes outline-scale {
+  0% {
+    outline-offset:0px;
+  }
+  25%{
+    outline-offset: 0.1rem;
+  }
+  50%{
+    outline-offset: 0.2rem;
+  }
+  75%{
+    outline-offset: 0.3rem;
+  }
+  100%{
+    outline-offset:0.4;
+  }
+}
